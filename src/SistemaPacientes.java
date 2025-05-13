@@ -2,11 +2,11 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.time.*;
 
-class cadastrarPaciente {
+class CadastrarPaciente {
 
     private String nome;
-    private int cpf;
-    private LocalDate dataDeNascimento;
+    private String cpf;
+    private String dataDeNascimento;
     private String endereco;
     //boolean pra identificar se um paciente foi internado/recebeu alta (pode servir de filtro pra listagem de pacientes)
 
@@ -18,19 +18,19 @@ class cadastrarPaciente {
         this.nome = nome;
     }
 
-    public int getCpf() {
+    public String getCpf() {
         return cpf;
     }
 
-    public void setCpf(int cpf) {
+    public void setCpf(String cpf) {
         this.cpf = cpf;
     }
 
-    public LocalDate getDataDeNascimento() {
+    public String getDataDeNascimento() {
         return dataDeNascimento;
     }
 
-    public void setDataDeNascimento(LocalDate dataDeNascimento) {
+    public void setDataDeNascimento(String dataDeNascimento) {
         this.dataDeNascimento = dataDeNascimento;
     }
 
@@ -41,23 +41,19 @@ class cadastrarPaciente {
     public void setEndereco(String endereco) {
         this.endereco = endereco;
     }
-
-    cadastrarPaciente(){
-
-    }   
 }
 
-class internarPaciente {
+class InternarPaciente {
 
-    private LocalDateTime dataDeEntrada;
+    private String dataDeEntrada;
     private String motivoDaInternacao;
     private String leito; //(data type propenso à mudança)
 
-    public LocalDateTime getDataDeEntrada() {
+    public String getDataDeEntrada() {
         return dataDeEntrada;
     }
 
-    public void setDataDeEntrada(LocalDateTime dataDeEntrada) {
+    public void setDataDeEntrada(String dataDeEntrada) {
         this.dataDeEntrada = dataDeEntrada;
     }
 
@@ -76,22 +72,18 @@ class internarPaciente {
     public void setLeito(String leito) {
         this.leito = leito;
     }
-
-    internarPaciente(){
-
-    }
 }
 
-class darAlta {
+class DarAlta {
 
-    private LocalDateTime dataDeAlta;
+    private String dataDeAlta;
     private String motivoObservação;
 
-    public LocalDateTime getDataDeAlta() {
+    public String getDataDeAlta() {
         return dataDeAlta;
     }
 
-    public void setDataDeAlta(LocalDateTime dataDeAlta) {
+    public void setDataDeAlta(String dataDeAlta) {
         this.dataDeAlta = dataDeAlta;
     }
 
@@ -102,78 +94,129 @@ class darAlta {
     public void setMotivoObservação(String motivoObservação) {
         this.motivoObservação = motivoObservação;
     }
-
-    darAlta(){
-        
-    }
 }
 
-class listarPacientes {
+class ListarPacientes {
 
     //visualizar todos os pacientes
     //visualizar internados
     //visualizar os que já receberam alta
-
-    listarPacientes(){
-        
-    }
+    
 }
 
 public class SistemaPacientes {
-        static Scanner seletorInterface = new Scanner(System.in);
-        static ArrayList<String> dadosPacientes = new ArrayList<>();
+        static Scanner scannerInterface = new Scanner(System.in);
+        static ArrayList<Object> dadosPacientes = new ArrayList<>();
+        //é viável criar outras arrays pra internação e alta?
     public static void main(String[] args) throws Exception {
-        //put in a while later
+    
+        while (true) {
+
         System.out.println(" Interface");
         System.out.println("1. Cadastro de paciente");
         System.out.println("2. Internamento");
         System.out.println("3. Alta médica");
         System.out.println("4. Listagem de pacientes");
         System.out.println("5. Encerrar processo");
-        System.out.println("-------------------------");
+        System.out.println("-------------------------");   
 
-        while (true) {
+        char selecaoNum = scannerInterface.next().charAt(0);
+        scannerInterface.nextLine();
 
-        char selecaoNum = seletorInterface.next().charAt(0);
+        switch (selecaoNum) {
+            case '1':
+                CadastrarPaciente();
+                continue;
+            
+            case '2':
+                InternarPaciente();
+                continue;
 
-            switch (selecaoNum) {
-                case '1':
-                    System.out.println("Cadastro de Pacientes");
-                    //setNome                   
-                    //setCPF
-                    //setDataDeNascimento
-                    //setEndereço
-                    //if pra setar como pendente qualquer dado que o paciente não tenha (categoria de indigente se for possível)
-                    //adicionar na arraylist e retornar ao menu
-                    break;
-                
-                case '2':
-                    System.out.println("Internamento");
-                    //setDataDeEntrada
-                    //setMotivoDaInternação
-                    //setLeito
-                    break;
+            case '3':
+                DarAlta();
+                continue;
 
-                case '3':
-                    System.out.println("Alta Médica");
-                    //setDataDeAlta
-                    //setMotivoOuObservação
-                    break;
+            case '4':
+                MostrarMenuListagem();
+                continue;
 
-                case '4':
-                    System.out.println("Listagem");
-                    //visualizar todos os pacientes
-                    //visualizar internados
-                    //visualizar os que já receberam alta
-                    break;
+            case '5':
+                System.out.println("Encerramento do sistema");
+                return;
 
-                case '5':
-                    System.out.println("Encerramento do sistema");
-                    return;
+            default: //mensagem de erro
+                break;
+            }
+        }      
+    }
+ 
+        private static void  CadastrarPaciente() {
+            System.out.println("Cadastro de Pacientes");
+                CadastrarPaciente paciente = new CadastrarPaciente();
+                String nome = scannerInterface.nextLine();
+                paciente.setNome(nome);
+                String cpf = scannerInterface.nextLine();
+                paciente.setCpf(cpf);
+                String dataDeNascimento = scannerInterface.nextLine();
+                paciente.setDataDeNascimento(dataDeNascimento);
+                String endereco = scannerInterface.nextLine();
+                paciente.setEndereco(endereco);
+                dadosPacientes.add(paciente); //resolver depois ✓ (eu acho)
+                //if pra setar como pendente qualquer dado que o paciente não tenha (categoria de indigente se for possível) _ pendente
+                //|adicionar na arraylist ✓| e |retornar ao menu ✓|
+        }
 
-                default: //mensagem de erro
-                    break;
+        private static void InternarPaciente() {
+            System.out.println("Internamento");
+                InternarPaciente internacao = new InternarPaciente(); //talvez suma¹
+                String dataDeEntrada = scannerInterface.nextLine();
+                internacao.setDataDeEntrada(dataDeEntrada);
+                String motivoInternacao = scannerInterface.nextLine();
+                internacao.setMotivoDaInternacao(motivoInternacao);
+                String leito = scannerInterface.nextLine();
+                internacao.setLeito(leito);
+                //provavel mudança de nomes ou objeto pra relação com paciente
+                //relacionar isso com objeto paciente quando registrar na arraylist (interface || herança ?)
+        }
+
+        private static void DarAlta() {
+            System.out.println("Alta Médica");
+                DarAlta alta = new DarAlta(); //talvez suma²
+                String dataAlta = scannerInterface.nextLine();
+                alta.setDataDeAlta(dataAlta);
+                String motivoOuObservacao = scannerInterface.nextLine();
+                alta.setMotivoObservação(motivoOuObservacao);
+        }
+
+        private static void MostrarMenuListagem() {
+            while (true) {
+                System.out.println("Listagem");
+                System.out.println("1.");
+                System.out.println("2.");
+                System.out.println("3.");
+                System.out.println("4.");
+                System.out.println("");
+
+                char opcao = scannerInterface.next().charAt(0);
+                scannerInterface.nextLine();
+
+                switch (opcao) { //terminar depois de relacionar paciente / internamento / alta
+                    case '1':
+                    
+                        break;
+
+                    case '2':
+
+                        break;
+
+                    case '3':
+
+                        break;
+
+                    case '4':
+
+                        return;
+                }
             }
         }
-    }
 }
