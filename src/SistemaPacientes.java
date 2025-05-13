@@ -47,8 +47,7 @@ class InternarPaciente {
 
     private String dataDeEntrada;
     private String motivoDaInternacao;
-    private String leito; //(data type propenso à mudança)
-
+    private String leito;
     public String getDataDeEntrada() {
         return dataDeEntrada;
     }
@@ -101,7 +100,7 @@ class ListarPacientes {
     //visualizar todos os pacientes
     //visualizar internados
     //visualizar os que já receberam alta
-    
+
 }
 
 public class SistemaPacientes {
@@ -173,8 +172,8 @@ public class SistemaPacientes {
                 internacao.setDataDeEntrada(dataDeEntrada);
                 String motivoInternacao = scannerInterface.nextLine();
                 internacao.setMotivoDaInternacao(motivoInternacao);
-                String leito = scannerInterface.nextLine();
-                internacao.setLeito(leito);
+                String leitoPaciente = scannerInterface.nextLine();
+                internacao.setLeito(leitoPaciente);
                 //provavel mudança de nomes ou objeto pra relação com paciente
                 //relacionar isso com objeto paciente quando registrar na arraylist (interface || herança ?)
         }
@@ -190,7 +189,7 @@ public class SistemaPacientes {
 
         private static void MostrarMenuListagem() {
             while (true) {
-                System.out.println("Listagem");
+                System.out.println("\nListagem");
                 System.out.println("1.");
                 System.out.println("2.");
                 System.out.println("3.");
