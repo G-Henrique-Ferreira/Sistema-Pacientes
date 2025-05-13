@@ -111,7 +111,7 @@ public class SistemaPacientes {
     
         while (true) {
 
-        System.out.println(" Interface");
+        System.out.println(" \nInterface");
         System.out.println("1. Cadastro de paciente");
         System.out.println("2. Internamento");
         System.out.println("3. Alta médica");
@@ -150,14 +150,18 @@ public class SistemaPacientes {
     }
  
         private static void  CadastrarPaciente() {
-            System.out.println("Cadastro de Pacientes");
+            System.out.println("Cadastro de Paciente");
                 CadastrarPaciente paciente = new CadastrarPaciente();
+                System.out.println("Nome: ");
                 String nome = scannerInterface.nextLine();
                 paciente.setNome(nome);
+                System.out.println("CPF: ");
                 String cpf = scannerInterface.nextLine();
                 paciente.setCpf(cpf);
-                String dataDeNascimento = scannerInterface.nextLine();
+                System.out.println("Data de Nascimento: ");
+                String dataDeNascimento = scannerInterface.nextLine();   
                 paciente.setDataDeNascimento(dataDeNascimento);
+                System.out.println("Endereço: ");
                 String endereco = scannerInterface.nextLine();
                 paciente.setEndereco(endereco);
                 dadosPacientes.add(paciente); //resolver depois ✓ (eu acho)
@@ -193,8 +197,8 @@ public class SistemaPacientes {
                 System.out.println("1.");
                 System.out.println("2.");
                 System.out.println("3.");
-                System.out.println("4.");
-                System.out.println("");
+                System.out.println("4. Voltar ao menu principal");
+                System.out.println("-----------------");
 
                 char opcao = scannerInterface.next().charAt(0);
                 scannerInterface.nextLine();
