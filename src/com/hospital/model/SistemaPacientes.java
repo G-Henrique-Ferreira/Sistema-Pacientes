@@ -4,18 +4,12 @@ import java.util.Scanner;
 import java.util.HashMap;
 import java.util.Map;
 
-class ListarPacientes {
-    /* (¬_¬) */
-}
-
 public class SistemaPacientes {
         static Scanner scannerInterface = new Scanner(System.in);
-        static ArrayList<Paciente> cadastroPacientes = new ArrayList<>();
+        static ArrayList<Paciente> pacientesCadastrados = new ArrayList<>();
         static Map<Paciente, Internamento> pacientesInternados = new HashMap<>();
         static Map<Paciente, AltaMedica> pacientesAlta = new HashMap<>();
     public static void main(String[] args) throws Exception {
-    
-        
 
         while (true) {
 
@@ -68,7 +62,7 @@ public class SistemaPacientes {
                 System.out.println("Endereço: ");
                 String endereco = scannerInterface.nextLine();
                 Paciente paciente = new Paciente(nome, cpf, dataDeNascimento, endereco);
-                cadastroPacientes.add(paciente);
+                pacientesCadastrados.add(paciente);
         }
 
         private static void InternarPaciente() {
@@ -77,7 +71,7 @@ public class SistemaPacientes {
             String cpf = scannerInterface.nextLine();
             Paciente pacienteInternar = null;
 
-            for (Paciente paciente : cadastroPacientes) {
+            for (Paciente paciente : pacientesCadastrados) {
                 if (paciente.toString().contains(cpf)) {
                     pacienteInternar = paciente;
                     break;
@@ -138,24 +132,15 @@ public class SistemaPacientes {
 
                 switch (opcao) {
                     case '1':
-                        System.out.println("\nLista de Pacientes:");
-                        for (Paciente paciente : cadastroPacientes) {
-                        System.out.println(paciente);
-                        }
+                        Listagem.listarCadastrados(pacientesCadastrados);
                         break;
 
                     case '2':
-                        System.out.println("\nLista de Pacientes Internados");
-                        for (Map.Entry<Paciente, Internamento> internamentoListagem : pacientesInternados.entrySet()) {
-                            System.out.println(internamentoListagem.getKey() + "\n" + internamentoListagem.getValue());
-                        }
+                        Listagem.listarInternados(pacientesInternados);
                         break;
 
                     case '3':
-                        System.out.println("\nLista de Alta Médica");
-                        for (Map.Entry<Paciente, AltaMedica> altaListagem : pacientesAlta.entrySet()) {
-                            System.out.println(altaListagem.getKey() + "\n" + altaListagem.getValue());
-                        }
+                        Listagem.listarAltas(pacientesAlta);
                         break;
 
                     case '4':
