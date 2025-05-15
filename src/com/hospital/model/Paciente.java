@@ -2,10 +2,10 @@ package com.hospital.model;
 
 class Paciente {
 
-    protected String nome;
-    protected String cpf;
-    protected String dataDeNascimento;
-    protected String endereco;
+    private String nome;
+    private String cpf;
+    private String dataDeNascimento;
+    private String endereco;
 
     public String getNome() {
         return nome;
