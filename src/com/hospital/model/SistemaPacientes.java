@@ -1,133 +1,8 @@
+package com.hospital.model;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.HashMap;
 import java.util.Map;
-
-class CadastrarPaciente {
-
-    private String nome;
-    private String cpf;
-    private String dataDeNascimento;
-    private String endereco;
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getCpf() {
-        return cpf;
-    }
-
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
-    }
-
-    public String getDataDeNascimento() {
-        return dataDeNascimento;
-    }
-
-    public void setDataDeNascimento(String dataDeNascimento) {
-        this.dataDeNascimento = dataDeNascimento;
-    }
-
-    public String getEndereco() {
-        return endereco;
-    }
-
-    public void setEndereco(String endereco) {
-        this.endereco = endereco;
-    }
-
-    public CadastrarPaciente(String nome, String cpf, String dataDeNascimento, String endereco) {
-        this.nome = nome;
-        this.cpf = cpf;
-        this.dataDeNascimento = dataDeNascimento;
-        this.endereco = endereco;
-    }
-
-    @Override
-    public String toString() {
-        return "\n----- Paciente ----- " +"\nNome: " + nome +  "\nCPF: " + cpf + "\nEndereço: " + endereco + "\nData de Nascimento: " + dataDeNascimento + " ";
-    }
-}
-
-class InternarPaciente {
-
-    private String dataDeEntrada;
-    private String motivoDaInternacao;
-    private String leito;
-
-    public String getDataDeEntrada() {
-        return dataDeEntrada;
-    }
-
-    public void setDataDeEntrada(String dataDeEntrada) {
-        this.dataDeEntrada = dataDeEntrada;
-    }
-
-    public String getMotivoDaInternacao() {
-        return motivoDaInternacao;
-    }
-
-    public void setMotivoDaInternacao(String motivoDaInternacao) {
-        this.motivoDaInternacao = motivoDaInternacao;
-    }
-
-    public String getLeito() {
-        return leito;
-    }
-
-    public void setLeito(String leito) {
-        this.leito = leito;
-    }
-
-    public InternarPaciente(String dataDeEntrada, String motivoDaInternacao, String leito) {
-        this.dataDeEntrada = dataDeEntrada;
-        this.motivoDaInternacao = motivoDaInternacao;
-        this.leito = leito;
-    }
-
-    @Override
-    public String toString() {
-        return "\nData de Entrada: " + dataDeEntrada + "\nMotivo: " + motivoDaInternacao + "\nLeito" + leito + " ";
-    }
-}
-
-class DarAlta {
-
-    private String dataDeAlta;
-    private String motivoObservacao;
-
-    public String getDataDeAlta() {
-        return dataDeAlta;
-    }
-
-    public void setDataDeAlta(String dataDeAlta) {
-        this.dataDeAlta = dataDeAlta;
-    }
-
-    public String getMotivoObservacao() {
-        return motivoObservacao;
-    }
-
-    public void setMotivoObservacao(String motivoObservacao) {
-        this.motivoObservacao = motivoObservacao;
-    }
-
-    public DarAlta(String dataDeAlta, String motivoOuObservacao) {
-        this.dataDeAlta = dataDeAlta;
-        this.motivoObservacao = motivoOuObservacao;
-    }
-
-    @Override
-    public String toString() {
-        return "\nData da Alta Médica: " + dataDeAlta + "\nMotivo da Alta ou Observação: " + motivoObservacao + " ";
-    }
-}
 
 class ListarPacientes {
     /* (¬_¬) */
@@ -135,9 +10,9 @@ class ListarPacientes {
 
 public class SistemaPacientes {
         static Scanner scannerInterface = new Scanner(System.in);
-        static ArrayList<CadastrarPaciente> dadosPacientes = new ArrayList<>();
-        static Map<CadastrarPaciente, InternarPaciente> pacientesInternados = new HashMap<>();
-        static Map<CadastrarPaciente, DarAlta> pacientesAlta = new HashMap<>();
+        static ArrayList<Paciente> cadastroPacientes = new ArrayList<>();
+        static Map<Paciente, Internamento> pacientesInternados = new HashMap<>();
+        static Map<Paciente, AltaMedica> pacientesAlta = new HashMap<>();
     public static void main(String[] args) throws Exception {
     
         
@@ -192,19 +67,17 @@ public class SistemaPacientes {
                 String dataDeNascimento = scannerInterface.nextLine();   
                 System.out.println("Endereço: ");
                 String endereco = scannerInterface.nextLine();
-                CadastrarPaciente paciente = new CadastrarPaciente(nome, cpf, dataDeNascimento, endereco);
-                dadosPacientes.add(paciente); //resolver depois ✓ (eu acho)
-                //if pra setar como pendente qualquer dado que o paciente não tenha (categoria de indigente se for possível) _ pendente
-                //|adicionar na arraylist ✓| e |retornar ao menu ✓|
+                Paciente paciente = new Paciente(nome, cpf, dataDeNascimento, endereco);
+                cadastroPacientes.add(paciente);
         }
 
         private static void InternarPaciente() {
             System.out.println("Internamento");
             System.out.println("CPF do paciente: ");
             String cpf = scannerInterface.nextLine();
-            CadastrarPaciente pacienteInternar = null;
+            Paciente pacienteInternar = null;
 
-            for (CadastrarPaciente paciente : dadosPacientes) {
+            for (Paciente paciente : cadastroPacientes) {
                 if (paciente.toString().contains(cpf)) {
                     pacienteInternar = paciente;
                     break;
@@ -218,7 +91,7 @@ public class SistemaPacientes {
                 String motivoInternacao = scannerInterface.nextLine();
                 System.out.println("Leito: ");
                 String leitoPaciente = scannerInterface.nextLine();
-                InternarPaciente internacao = new InternarPaciente(dataDeEntrada, motivoInternacao, leitoPaciente);
+                Internamento internacao = new Internamento(dataDeEntrada, motivoInternacao, leitoPaciente);
                 pacientesInternados.put(pacienteInternar, internacao);
             } else {
                 System.out.println("Paciente não encontrado.");
@@ -229,9 +102,9 @@ public class SistemaPacientes {
             System.out.println("Alta Médica");
             System.out.println("CPF do paciente: ");
             String cpf = scannerInterface.nextLine();
-            CadastrarPaciente pacienteAlta = null;
+            Paciente pacienteAlta = null;
 
-            for (CadastrarPaciente paciente : pacientesInternados.keySet()) {
+            for (Paciente paciente : pacientesInternados.keySet()) {
                 if (paciente.toString().contains(cpf)) {
                     pacienteAlta = paciente;
                     break;
@@ -243,7 +116,7 @@ public class SistemaPacientes {
                 String dataAlta = scannerInterface.nextLine();
                 System.out.println("Motivo/Observação: ");
                 String motivoOuObservacao = scannerInterface.nextLine();
-                DarAlta alta = new DarAlta(dataAlta, motivoOuObservacao);
+                AltaMedica alta = new AltaMedica(dataAlta, motivoOuObservacao);
                 pacientesAlta.put(pacienteAlta, alta);
                 pacientesInternados.remove(pacienteAlta);
             } else {
@@ -263,24 +136,24 @@ public class SistemaPacientes {
                 char opcao = scannerInterface.next().charAt(0);
                 scannerInterface.nextLine();
 
-                switch (opcao) { //terminar depois de relacionar paciente / internamento / alta
+                switch (opcao) {
                     case '1':
                         System.out.println("\nLista de Pacientes:");
-                        for (CadastrarPaciente paciente : dadosPacientes) {
+                        for (Paciente paciente : cadastroPacientes) {
                         System.out.println(paciente);
                         }
                         break;
 
                     case '2':
                         System.out.println("\nLista de Pacientes Internados");
-                        for (Map.Entry<CadastrarPaciente, InternarPaciente> internamentoListagem : pacientesInternados.entrySet()) {
+                        for (Map.Entry<Paciente, Internamento> internamentoListagem : pacientesInternados.entrySet()) {
                             System.out.println(internamentoListagem.getKey() + "\n" + internamentoListagem.getValue());
                         }
                         break;
 
                     case '3':
                         System.out.println("\nLista de Alta Médica");
-                        for (Map.Entry<CadastrarPaciente, DarAlta> altaListagem : pacientesAlta.entrySet()) {
+                        for (Map.Entry<Paciente, AltaMedica> altaListagem : pacientesAlta.entrySet()) {
                             System.out.println(altaListagem.getKey() + "\n" + altaListagem.getValue());
                         }
                         break;

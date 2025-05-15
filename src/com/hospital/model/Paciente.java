@@ -1,0 +1,53 @@
+package com.hospital.model;
+
+class Paciente {
+
+    protected String nome;
+    protected String cpf;
+    protected String dataDeNascimento;
+    protected String endereco;
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    public String getDataDeNascimento() {
+        return dataDeNascimento;
+    }
+
+    public void setDataDeNascimento(String dataDeNascimento) {
+        this.dataDeNascimento = dataDeNascimento;
+    }
+
+    public String getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
+    }
+
+    public Paciente(String nome, String cpf, String dataDeNascimento, String endereco) {
+        this.nome = nome;
+        this.cpf = cpf;
+        this.dataDeNascimento = dataDeNascimento;
+        this.endereco = endereco;
+    }
+
+    @Override
+    public String toString() {
+        return "\n----- Paciente ----- " +"\nNome: " + nome +  "\nCPF: " + cpf + "\nEndereço: " + endereco + "\nData de Nascimento: " + dataDeNascimento + " ";
+    }
+}
