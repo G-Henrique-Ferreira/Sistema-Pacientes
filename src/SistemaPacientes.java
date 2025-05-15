@@ -1,7 +1,7 @@
 import java.util.ArrayList;
+import java.util.Scanner;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Scanner;
 
 class CadastrarPaciente {
 
@@ -9,7 +9,38 @@ class CadastrarPaciente {
     private String cpf;
     private String dataDeNascimento;
     private String endereco;
-    //boolean pra identificar se um paciente foi internado/recebeu alta (pode servir de filtro pra listagem de pacientes)
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    public String getDataDeNascimento() {
+        return dataDeNascimento;
+    }
+
+    public void setDataDeNascimento(String dataDeNascimento) {
+        this.dataDeNascimento = dataDeNascimento;
+    }
+
+    public String getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
+    }
 
     public CadastrarPaciente(String nome, String cpf, String dataDeNascimento, String endereco) {
         this.nome = nome;
@@ -30,6 +61,30 @@ class InternarPaciente {
     private String motivoDaInternacao;
     private String leito;
 
+    public String getDataDeEntrada() {
+        return dataDeEntrada;
+    }
+
+    public void setDataDeEntrada(String dataDeEntrada) {
+        this.dataDeEntrada = dataDeEntrada;
+    }
+
+    public String getMotivoDaInternacao() {
+        return motivoDaInternacao;
+    }
+
+    public void setMotivoDaInternacao(String motivoDaInternacao) {
+        this.motivoDaInternacao = motivoDaInternacao;
+    }
+
+    public String getLeito() {
+        return leito;
+    }
+
+    public void setLeito(String leito) {
+        this.leito = leito;
+    }
+
     public InternarPaciente(String dataDeEntrada, String motivoDaInternacao, String leito) {
         this.dataDeEntrada = dataDeEntrada;
         this.motivoDaInternacao = motivoDaInternacao;
@@ -47,6 +102,22 @@ class DarAlta {
     private String dataDeAlta;
     private String motivoObservacao;
 
+    public String getDataDeAlta() {
+        return dataDeAlta;
+    }
+
+    public void setDataDeAlta(String dataDeAlta) {
+        this.dataDeAlta = dataDeAlta;
+    }
+
+    public String getMotivoObservacao() {
+        return motivoObservacao;
+    }
+
+    public void setMotivoObservacao(String motivoObservacao) {
+        this.motivoObservacao = motivoObservacao;
+    }
+
     public DarAlta(String dataDeAlta, String motivoOuObservacao) {
         this.dataDeAlta = dataDeAlta;
         this.motivoObservacao = motivoOuObservacao;
@@ -56,30 +127,10 @@ class DarAlta {
     public String toString() {
         return "\nData da Alta Médica: " + dataDeAlta + "\nMotivo da Alta ou Observação: " + motivoObservacao + " ";
     }
-
-    public String getDataDeAlta() {
-        return dataDeAlta;
-    }
-
-    public void setDataDeAlta(String dataDeAlta) {
-        this.dataDeAlta = dataDeAlta;
-    }
-
-    public String getMotivoObservação() {
-        return motivoObservacao;
-    }
-
-    public void setMotivoObservação(String motivoObservação) {
-        this.motivoObservacao = motivoObservação;
-    }
 }
 
 class ListarPacientes {
-
-    //visualizar todos os pacientes
-    //visualizar internados
-    //visualizar os que já receberam alta
-
+    /* (¬_¬) */
 }
 
 public class SistemaPacientes {
@@ -118,7 +169,7 @@ public class SistemaPacientes {
                 continue;
 
             case '4':
-                MostrarMenuListagem();
+                ListarPacientes();
                 continue;
 
             case '5':
@@ -200,7 +251,7 @@ public class SistemaPacientes {
             }
         }
 
-        private static void MostrarMenuListagem() {
+        private static void ListarPacientes() {
             while (true) {
                 System.out.println("\nListagem");
                 System.out.println("1. Pacientes cadastrados");
