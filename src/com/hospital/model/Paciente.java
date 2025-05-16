@@ -7,19 +7,20 @@ import javax.validation.constraints.*;
 
 class Paciente {
 
+    @Pattern(regexp = "^[a-z]$")
     @NotBlank(message = "Campo não deve ficar em branco.")
     private String nome;
 
-    @NotBlank(message = "Campo não deve ficar em branco")
     @Pattern(regexp = "^\\d{11}$", message = "CPF inválido.")
+    @NotBlank(message = "Campo não deve ficar em branco")
     private String cpf;
 
     //@Past
-    @NotBlank(message = "Campo não deve ficar em branco")
     @Pattern(regexp = "^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[012])/\\d{4}$", message = "Data inválida.")
+    @NotBlank(message = "Campo não deve ficar em branco")
     private String dataDeNascimento;
 
-    @NotBlank(message = "Campo não deve ficar em branco.")
+    @NotBlank(message = "\nCampo não deve ficar em branco.")
     private String endereco;
 
     public Paciente(String nome, String cpf, String dataDeNascimento, String endereco) {
@@ -50,6 +51,7 @@ class Paciente {
 
         Set<ConstraintViolation<Paciente>> erros = validarCadastro.validate(paciente);
         if (!erros.isEmpty()) {
+        System.out.println("Erro de validação.");
         erros.forEach(e -> System.out.println(e.getMessage()));
         return;
         }

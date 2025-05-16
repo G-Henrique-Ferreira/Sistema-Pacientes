@@ -37,11 +37,11 @@ public class SistemaPacientes {
                 continue;
             
             case '2':
-                Internamento.internarPaciente(scannerInterface, pacientesInternados);
+                Internamento.internarPaciente(scannerInterface, pacientesInternados, validarCadastro);
                 continue;
 
             case '3':
-                AltaMedica.darAlta(scannerInterface, pacientesAlta);
+                AltaMedica.darAlta(scannerInterface, pacientesAlta, validarCadastro);
                 continue;
 
             case '4':
