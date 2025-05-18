@@ -7,7 +7,7 @@ import javax.validation.constraints.*;
 
 class Paciente {
 
-    @Pattern(regexp = "^[a-z]$")
+    @Pattern(regexp = "^[a-zA-Z\\s]+$")
     @NotBlank(message = "Campo não deve ficar em branco.")
     private String nome;
 
