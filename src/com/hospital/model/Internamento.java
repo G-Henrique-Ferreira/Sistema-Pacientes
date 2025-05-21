@@ -12,8 +12,10 @@ class Internamento {
     @NotBlank(message = "\nCampo não deve ficar em branco")
     private String dataDeEntrada;
 
+    @NotBlank(message = "\nCampo não deve ficar em branco")
     private String motivoDaInternacao;
 
+    @NotBlank(message = "\nCampo não deve ficar em branco")
     private String leito;
 
     public Internamento(String dataDeEntrada, String motivoDaInternacao, String leito) {
@@ -41,7 +43,7 @@ class Internamento {
          }
             
         if (pacienteInternar != null) {
-            System.out.println("Data de Entrada:");
+            System.out.println("Data de Entrada (DD/MM/YYYY): ");
             String dataDeEntrada = scannerInterface.nextLine(); 
             System.out.println("Motivo da Internação: ");
             String motivoInternacao = scannerInterface.nextLine();
